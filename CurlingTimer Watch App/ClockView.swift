@@ -20,7 +20,7 @@ struct ClockView: View {
     @State private var logpostcounter:Int = 0
     
     @Binding var clock: Clock
-
+    
     var body: some View {
         VStack {
             Rectangle()
@@ -28,15 +28,13 @@ struct ClockView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .overlay(
                 VStack {
-                    Text(getClockLabel()).font(.title).frame(alignment: .center)
-                    Text(getClockTime()).font(.title3)
+                    Text(getClockLabel()).font(.title2).frame(alignment: .center)
+                    Text(getClockTime()).font(.title)
                         .onReceive(timer) { _ in
                             self.updateTime()
                         }
                 }
             )
-            //Text(clock.timeing.stringValue()).font(.footnote)
-            SettingView(clock: $clock).labelsHidden()
         }
         .contentShape(Rectangle())
         .onTapGesture {
@@ -44,8 +42,8 @@ struct ClockView: View {
             if self.isRunning {
                 // Stop -> Start
                 t_end = currentTime
-                let teetime = getTeeTime(line: clock.timeing, time: Double(Int64(bitPattern: t_end)))
-                let backtime = getBackTime(line: clock.timeing, time: Double(Int64(bitPattern: t_end)))
+                let teetime = getTeeTime(line: clock.timing, time: Double(Int64(bitPattern: t_end)))
+                let backtime = getBackTime(line: clock.timing, time: Double(Int64(bitPattern: t_end)))
                 let newPost = LogItem(id: logpostcounter, when: now, bakkant: backtime, tee: teetime)
                 log.append(newPost)
                 logpostcounter += 1
@@ -55,7 +53,7 @@ struct ClockView: View {
                 self.isRunning.toggle()
                 initTime()
             }
-        }
+        }        
     }
 
     
@@ -92,7 +90,7 @@ struct ClockView: View {
         return tee * 1.256
     }
     
-    private func getTeeTime(line: Clock.TimerStrategi, time: Double) -> Double {
+    private func getTeeTime(line: Clock.TimerStrategy, time: Double) -> Double {
         var teetime: Double = 0
         if line == .tee {
             teetime = time
@@ -102,7 +100,7 @@ struct ClockView: View {
         return teetime
     }
                                            
-   private func getBackTime(line: Clock.TimerStrategi, time: Double) -> Double {
+   private func getBackTime(line: Clock.TimerStrategy, time: Double) -> Double {
        var backtime: Double = 0
        if line == .tee {
            backtime = calcBackTime(tee: time)
@@ -124,10 +122,10 @@ struct ClockView: View {
         var ret: String = ""
         
         if self.isRunning {
-            ret = "\(currentTime)"
+            ret = "\(timeString(time: Double(currentTime)))"
         } else {
             if self.t_end != 0 {
-                if clock.timeing == .tee {
+                if clock.timing == .tee {
                     ret = "Tee: \(timeString(time: Double(t_end)))\nBack: \(timeString(time: calcBackTime(tee: Double(t_end))))"
                 } else {
                     ret = "Tee: "+timeString(time: calcTeeTime(back: Double(t_end)))+"\nBack: "+timeString(time: Double(t_end))
@@ -144,7 +142,7 @@ struct ClockView: View {
             ret = try! AttributedString(markdown:"\(currentTime)")
         } else {
             if self.t_end != 0 {
-                if clock.timeing == .tee {
+                if clock.timing == .tee {
                     //try! AttributedString(markdown:
                     ret = try! AttributedString(markdown: "**Tee: \(timeString(time: Double(t_end)))** \nBack: \(timeString(time: calcBackTime(tee: Double(t_end))))")
                 } else {
@@ -167,7 +165,7 @@ struct ClockView: View {
         static var previews: some View {
             let samplelog: [LogItem] = [LogItem(id: 1, when: Date.init(), bakkant: 2.34, tee: 3.33),
                                         LogItem(id: 1, when: Date.init(), bakkant: 3.34, tee: 4.33)]
-            let sampleclock: Clock = Clock.init(timeing: .tee)
+            let sampleclock: Clock = Clock.init(timing: .tee)
             return ClockView(log: .constant(samplelog),clock: .constant(sampleclock))
         }
     }

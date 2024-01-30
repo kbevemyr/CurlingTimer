@@ -9,7 +9,7 @@ import Foundation
 
 struct Clock {
     
-    enum TimerStrategi: Int, CaseIterable {
+    enum TimerStrategy: Int, CaseIterable {
         case tee
         case back
 
@@ -24,7 +24,8 @@ struct Clock {
         }
     }
     
-    public var timeing: TimerStrategi
+    public var timing: TimerStrategy
+    //public var pict:
 }
 
 

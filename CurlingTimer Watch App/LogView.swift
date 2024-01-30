@@ -18,7 +18,6 @@ struct LogView: View {
                 List($log.reversed()) { logitem in
                     LogItemView(logitem: logitem)
                 }
-                Text("by Bevemyr").font(.footnote)
             }
         }
     }

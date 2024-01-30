@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var log:[LogItem] = []
+    @State var clock:Clock = Clock(timing: .tee)
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            NavigationStack {
+                ClockView(log: $log, clock: $clock)
+            }
+            NavigationStack {
+                LogView(log: $log)
+            }
+            NavigationStack {
+                SettingView(clock: $clock, log: $log)
+            }
         }
-        .padding()
+        .tabViewStyle(.page)
     }
 }
 
