@@ -30,10 +30,12 @@ struct ClockView: View {
                 .overlay(
                 VStack {
                     Text(getClockLabel()).font(.title2).frame(alignment: .center)
+                    Spacer()
                     Text(getClockTime()).font(.title)
                         .onReceive(timer) { _ in
                             self.updateTime()
                         }
+                    Spacer()
                 }
             )
         }
@@ -127,9 +129,9 @@ struct ClockView: View {
         } else {
             if self.t_end != 0 {
                 if clock.timing == .tee {
-                    ret = "Tee: \(timeString(time: Double(t_end)))\nBack: \(timeString(time: calcBackTime(tee: Double(t_end))))"
+                    ret = "\(timeString(time: Double(t_end)))"
                 } else {
-                    ret = "Tee: "+timeString(time: calcTeeTime(back: Double(t_end)))+"\nBack: "+timeString(time: Double(t_end))
+                    ret = "\(timeString(time: Double(t_end)))"
                 }
             }
         }
