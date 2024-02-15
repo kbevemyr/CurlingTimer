@@ -25,6 +25,11 @@ struct Clock {
     }
     
     public var timing: TimerStrategy
+    
+    // Ska dessa vara private??
+    public var t_zero: UInt64 = DispatchTime.now().uptimeNanoseconds
+    public var t_end: UInt64 = 0
+    public var currentTime: UInt64 = 0
     //public var pict:
 }
 

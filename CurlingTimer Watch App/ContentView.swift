@@ -15,15 +15,15 @@ struct ContentView: View {
         TabView {
             NavigationStack {
                 ClockView(log: $log, clock: $clock)
-            }
+            }.containerBackground(.red.gradient, for: .tabView)
             NavigationStack {
                 LogView(log: $log)
-            }
+            }.containerBackground(.blue.gradient, for: .tabView)
             NavigationStack {
                 SettingView(clock: $clock, log: $log)
-            }
+            }.containerBackground(.blue.gradient, for: .tabView)
         }
-        .tabViewStyle(.page)
+        .tabViewStyle(.verticalPage)
     }
 }
 

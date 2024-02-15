@@ -24,7 +24,8 @@ struct ClockView: View {
     var body: some View {
         VStack {
             Rectangle()
-                .fill(getClockColor())
+                .fill(Color.clear)
+                .opacity(0.8)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .overlay(
                 VStack {
@@ -53,7 +54,7 @@ struct ClockView: View {
                 self.isRunning.toggle()
                 initTime()
             }
-        }        
+        }.containerBackground(getClockColor().gradient, for: .tabView)
     }
 
     
