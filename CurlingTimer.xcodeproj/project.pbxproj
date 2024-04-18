@@ -7,21 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		549A63BB2BC302A300C536B3 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A63BA2BC302A300C536B3 /* SettingView.swift */; };
+		549A63BD2BC302E900C536B3 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A63BC2BC302E900C536B3 /* LogView.swift */; };
+		549A63C52BC32DEB00C536B3 /* LogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A63C42BC32DEB00C536B3 /* LogItemView.swift */; };
+		549A63C72BC3352800C536B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54B9F23D2B66A34A00DE5A38 /* Assets.xcassets */; };
+		549A63CB2BCC060100C536B3 /* LogHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A63CA2BCC060100C536B3 /* LogHeaderView.swift */; };
 		54B9F23A2B66A34800DE5A38 /* CurlingTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F2392B66A34800DE5A38 /* CurlingTimerApp.swift */; };
 		54B9F23C2B66A34800DE5A38 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F23B2B66A34800DE5A38 /* ContentView.swift */; };
-		54B9F23E2B66A34A00DE5A38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54B9F23D2B66A34A00DE5A38 /* Assets.xcassets */; };
 		54B9F2412B66A34A00DE5A38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54B9F2402B66A34A00DE5A38 /* Preview Assets.xcassets */; };
 		54B9F2472B66A34A00DE5A38 /* CurlingTimer Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 54B9F2462B66A34A00DE5A38 /* CurlingTimer Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		54B9F24C2B66A34A00DE5A38 /* CurlingTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F24B2B66A34A00DE5A38 /* CurlingTimerApp.swift */; };
 		54B9F24E2B66A34A00DE5A38 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F24D2B66A34A00DE5A38 /* ContentView.swift */; };
 		54B9F2502B66A34B00DE5A38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54B9F24F2B66A34B00DE5A38 /* Assets.xcassets */; };
 		54B9F2532B66A34B00DE5A38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54B9F2522B66A34B00DE5A38 /* Preview Assets.xcassets */; };
-		54B9F25F2B66A37600DE5A38 /* LogItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25D2B66A37500DE5A38 /* LogItemModel.swift */; };
+		54B9F25F2B66A37600DE5A38 /* LogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25D2B66A37500DE5A38 /* LogModel.swift */; };
 		54B9F2602B66A37600DE5A38 /* ClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25E2B66A37500DE5A38 /* ClockModel.swift */; };
 		54B9F2642B66A38D00DE5A38 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F2612B66A38D00DE5A38 /* SettingView.swift */; };
 		54B9F2652B66A38D00DE5A38 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F2622B66A38D00DE5A38 /* LogView.swift */; };
 		54B9F2662B66A38D00DE5A38 /* LogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F2632B66A38D00DE5A38 /* LogItemView.swift */; };
 		54B9F2682B66A3A300DE5A38 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F2672B66A3A300DE5A38 /* ClockView.swift */; };
+		54E658DF2BBC6DA500DE062A /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E658DE2BBC6DA500DE062A /* ClockView.swift */; };
+		54E658E12BBC6E3900DE062A /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E658E02BBC6E3900DE062A /* InfoView.swift */; };
+		54E658E22BC040FD00DE062A /* ClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25E2B66A37500DE5A38 /* ClockModel.swift */; };
+		54E658E32BC0410400DE062A /* LogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25D2B66A37500DE5A38 /* LogModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +57,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		549A63BA2BC302A300C536B3 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		549A63BC2BC302E900C536B3 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		549A63C42BC32DEB00C536B3 /* LogItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemView.swift; sourceTree = "<group>"; };
+		549A63CA2BCC060100C536B3 /* LogHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHeaderView.swift; sourceTree = "<group>"; };
 		54B9F2362B66A34800DE5A38 /* CurlingTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurlingTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54B9F2392B66A34800DE5A38 /* CurlingTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlingTimerApp.swift; sourceTree = "<group>"; };
 		54B9F23B2B66A34800DE5A38 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,12 +71,14 @@
 		54B9F24D2B66A34A00DE5A38 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		54B9F24F2B66A34B00DE5A38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54B9F2522B66A34B00DE5A38 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		54B9F25D2B66A37500DE5A38 /* LogItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItemModel.swift; sourceTree = "<group>"; };
+		54B9F25D2B66A37500DE5A38 /* LogModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogModel.swift; sourceTree = "<group>"; };
 		54B9F25E2B66A37500DE5A38 /* ClockModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockModel.swift; sourceTree = "<group>"; };
 		54B9F2612B66A38D00DE5A38 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		54B9F2622B66A38D00DE5A38 /* LogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		54B9F2632B66A38D00DE5A38 /* LogItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItemView.swift; sourceTree = "<group>"; };
 		54B9F2672B66A3A300DE5A38 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		54E658DE2BBC6DA500DE062A /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		54E658E02BBC6E3900DE062A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +123,12 @@
 			children = (
 				54B9F2392B66A34800DE5A38 /* CurlingTimerApp.swift */,
 				54B9F23B2B66A34800DE5A38 /* ContentView.swift */,
+				54E658DE2BBC6DA500DE062A /* ClockView.swift */,
+				54E658E02BBC6E3900DE062A /* InfoView.swift */,
+				549A63BA2BC302A300C536B3 /* SettingView.swift */,
+				549A63BC2BC302E900C536B3 /* LogView.swift */,
+				549A63C42BC32DEB00C536B3 /* LogItemView.swift */,
+				549A63CA2BCC060100C536B3 /* LogHeaderView.swift */,
 				54B9F23D2B66A34A00DE5A38 /* Assets.xcassets */,
 				54B9F23F2B66A34A00DE5A38 /* Preview Content */,
 			);
@@ -133,8 +153,6 @@
 				54B9F2622B66A38D00DE5A38 /* LogView.swift */,
 				54B9F2612B66A38D00DE5A38 /* SettingView.swift */,
 				54B9F24F2B66A34B00DE5A38 /* Assets.xcassets */,
-				54B9F25E2B66A37500DE5A38 /* ClockModel.swift */,
-				54B9F25D2B66A37500DE5A38 /* LogItemModel.swift */,
 				54B9F2512B66A34B00DE5A38 /* Preview Content */,
 			);
 			path = "CurlingTimer Watch App";
@@ -151,6 +169,8 @@
 		54E658DD2B78E70700DE062A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				54B9F25E2B66A37500DE5A38 /* ClockModel.swift */,
+				54B9F25D2B66A37500DE5A38 /* LogModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,7 +222,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					54B9F2352B66A34800DE5A38 = {
 						CreatedOnToolsVersion = 15.2;
@@ -236,8 +256,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				549A63C72BC3352800C536B3 /* Assets.xcassets in Resources */,
 				54B9F2412B66A34A00DE5A38 /* Preview Assets.xcassets in Resources */,
-				54B9F23E2B66A34A00DE5A38 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +277,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54E658E32BC0410400DE062A /* LogModel.swift in Sources */,
+				54E658E22BC040FD00DE062A /* ClockModel.swift in Sources */,
+				54E658E12BBC6E3900DE062A /* InfoView.swift in Sources */,
+				549A63C52BC32DEB00C536B3 /* LogItemView.swift in Sources */,
+				549A63BB2BC302A300C536B3 /* SettingView.swift in Sources */,
 				54B9F23C2B66A34800DE5A38 /* ContentView.swift in Sources */,
+				549A63CB2BCC060100C536B3 /* LogHeaderView.swift in Sources */,
+				549A63BD2BC302E900C536B3 /* LogView.swift in Sources */,
+				54E658DF2BBC6DA500DE062A /* ClockView.swift in Sources */,
 				54B9F23A2B66A34800DE5A38 /* CurlingTimerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,7 +301,7 @@
 				54B9F2642B66A38D00DE5A38 /* SettingView.swift in Sources */,
 				54B9F24E2B66A34A00DE5A38 /* ContentView.swift in Sources */,
 				54B9F24C2B66A34A00DE5A38 /* CurlingTimerApp.swift in Sources */,
-				54B9F25F2B66A37600DE5A38 /* LogItemModel.swift in Sources */,
+				54B9F25F2B66A37600DE5A38 /* LogModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +350,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -385,6 +414,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -489,7 +519,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -527,7 +557,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

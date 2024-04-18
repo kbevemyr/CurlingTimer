@@ -1,9 +1,10 @@
 //
 //  ClockView.swift
-//  BevemyrTimer Watch App
+//  CurlingTimer
 //
-//  Created by Katrin Boberg Bevemyr on 2023-12-30.
+//  Created by Katrin Boberg Bevemyr on 2024-04-02.
 //
+
 
 import SwiftUI
 
@@ -17,23 +18,28 @@ struct ClockView: View {
     
     var body: some View {
         VStack {
-            Rectangle()
-                .fill(Color.clear)
+            Circle()
+                .fill(Color(UIColor.systemBackground))
                 .opacity(0.8)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(width: 300, height: 300)
                 .overlay(
-                    VStack {
-                        Text(getClockLabel()).font(.title2).frame(alignment: .center)
-                        Spacer()
-                        Text(getClockTime()).font(.largeTitle)
-                            .onReceive(timer) { _ in
-                                clock.updateTime()
+                    Circle()
+                        .stroke(getClockColor(), lineWidth: 20)
+                        .overlay(
+                            VStack {
+                                Spacer()
+                                Text(getClockLabel()).font(.largeTitle).frame(alignment: .center)
+                                //Spacer()
+                                Text(getClockTime()).font(.largeTitle)
+                                    .onReceive(timer) { _ in
+                                        clock.updateTime()
+                                    }
+                                Spacer()
                             }
-                        Spacer()
-                    }
+                    )
                 )
         }
-        .contentShape(Rectangle())
+        .contentShape(Circle())
         .onTapGesture {
             // Action to perform when the rectangle is tapped
             if self.isRunning {
@@ -50,7 +56,7 @@ struct ClockView: View {
                 clock.initTime()
             }
         }
-        .containerBackground(LinearGradient(gradient: Gradient(colors: [getClockColor(), .black]), startPoint: .top, endPoint: .bottom), for: .tabView)
+//        .containerBackground(LinearGradient(gradient: Gradient(colors: [getClockColor(), .black]), startPoint: .top, endPoint: .bottom), for: .tabView)
         .sensoryFeedback(.start, trigger: isRunning)
     }
 

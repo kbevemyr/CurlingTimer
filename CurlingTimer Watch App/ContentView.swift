@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var log:[LogItem] = []
-    @State var clock:Clock = Clock(timing: .tee)
+    @State var log:Log = Log()
+    @State var clock:Clock = Clock()
     
     var body: some View {
         TabView {
