@@ -8,15 +8,20 @@
 import SwiftUI
 
 struct LogView: View {
-    @Binding var log: Log
+    @Binding var log: Log;
         
     var body: some View {
         if log.items.isEmpty {
             Text("No times stored")
         } else {
-            VStack {
-                List($log.items.reversed()) { logitem in
-                    LogItemView(logitem: logitem)
+            VStack (spacing: 0) {
+                List {
+                    Section (header: LogHeaderView()) {
+                        ForEach($log.items.reversed()) {
+                            logitem in LogItemView(logitem: logitem)
+                        }
+                    }
+                    .headerProminence(.increased)
                 }
             }
         }

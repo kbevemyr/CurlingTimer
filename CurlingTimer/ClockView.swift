@@ -43,7 +43,7 @@ struct ClockView: View {
         .onTapGesture {
             // Action to perform when the rectangle is tapped
             if self.isRunning {
-                // Stop -> Start
+                // Start -> Stop
                 clock.stopTime()
                 let teetime = clock.getTeeTime()
                 let backtime = clock.getBackTime()
@@ -51,7 +51,7 @@ struct ClockView: View {
                 log.addPost(post: newPost)
                 self.isRunning.toggle()
             } else {
-                // Start -> Stop
+                // Stop -> Start
                 self.isRunning.toggle()
                 clock.initTime()
             }

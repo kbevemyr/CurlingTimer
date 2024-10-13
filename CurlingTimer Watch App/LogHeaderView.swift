@@ -9,7 +9,20 @@ import SwiftUI
 
 struct LogHeaderView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Text("Date")
+                .font(.title3)
+                .fontWeight(.bold)
+            Spacer()
+            Text("Tee")
+                .font(.title3)
+                .fontWeight(.bold)
+            Spacer()
+            Text("Back")
+                .font(.title3)
+                .fontWeight(.bold)
+        }
+        .padding()
     }
 }
 

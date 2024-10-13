@@ -30,6 +30,7 @@
 		54E658E12BBC6E3900DE062A /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E658E02BBC6E3900DE062A /* InfoView.swift */; };
 		54E658E22BC040FD00DE062A /* ClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25E2B66A37500DE5A38 /* ClockModel.swift */; };
 		54E658E32BC0410400DE062A /* LogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25D2B66A37500DE5A38 /* LogModel.swift */; };
+		54FEDB012CBAE56A002BAE2B /* LogHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEDB002CBAE56A002BAE2B /* LogHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		54B9F2672B66A3A300DE5A38 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		54E658DE2BBC6DA500DE062A /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		54E658E02BBC6E3900DE062A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		54FEDB002CBAE56A002BAE2B /* LogHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +151,9 @@
 				54B9F24B2B66A34A00DE5A38 /* CurlingTimerApp.swift */,
 				54B9F24D2B66A34A00DE5A38 /* ContentView.swift */,
 				54B9F2672B66A3A300DE5A38 /* ClockView.swift */,
-				54B9F2632B66A38D00DE5A38 /* LogItemView.swift */,
 				54B9F2622B66A38D00DE5A38 /* LogView.swift */,
+				54FEDB002CBAE56A002BAE2B /* LogHeaderView.swift */,
+				54B9F2632B66A38D00DE5A38 /* LogItemView.swift */,
 				54B9F2612B66A38D00DE5A38 /* SettingView.swift */,
 				54B9F24F2B66A34B00DE5A38 /* Assets.xcassets */,
 				54B9F2512B66A34B00DE5A38 /* Preview Content */,
@@ -296,6 +299,7 @@
 			files = (
 				54B9F2602B66A37600DE5A38 /* ClockModel.swift in Sources */,
 				54B9F2682B66A3A300DE5A38 /* ClockView.swift in Sources */,
+				54FEDB012CBAE56A002BAE2B /* LogHeaderView.swift in Sources */,
 				54B9F2652B66A38D00DE5A38 /* LogView.swift in Sources */,
 				54B9F2662B66A38D00DE5A38 /* LogItemView.swift in Sources */,
 				54B9F2642B66A38D00DE5A38 /* SettingView.swift in Sources */,

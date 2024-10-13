@@ -11,9 +11,7 @@ struct LogItemView: View {
     
     @Binding var logitem:LogItem
     
-    let blue1 = Color(red: 0/255, green: 50/255, blue:107/255) // 0 50 107
-    let blue2 = Color(red: 33/255, green: 124/255, blue:230/255)
-    let blue3 = Color(UIColor(named: "LogItemColor")!)
+    let bgcolor = Color(UIColor(named: "LogItemColor")!)
     
     var body: some View {
         HStack {
@@ -22,7 +20,7 @@ struct LogItemView: View {
             Text(timeString(time: logitem.tee)).font(.title3)
             Spacer()
             Text(timeString(time: logitem.bakkant)).font(.title3)
-        }.listRowBackground(blue3)
+        }.listRowBackground(bgcolor)
     }
     
     var dateFormat: DateFormatter {
