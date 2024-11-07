@@ -9,35 +9,30 @@ import SwiftUI
 
 struct LogView: View {
     @Binding var log: Log
-    
-    let blue3 = Color(UIColor(named: "LogItemColor")!)
+    @Binding var clock: Clock
     
     var body: some View {
         VStack {
             HStack {
-                Text("               ")
-                Spacer()
-                Text("Log").font(.largeTitle)
+                Text("\(clock.timingLine.stringValue())")
                 Spacer()
                 Button("Clear log") {
                     log.clearLog()
+                    clock.initTime()
                 }
             }
-            .padding()
-            if log.items.isEmpty {
-                Text("No times stored")
-                Spacer()
-            } else {
-                VStack (spacing: 0) {
-                    List {
-                        Section (header: LogHeaderView()) {
-                            ForEach($log.items.reversed()) {
-                                logitem in LogItemView(logitem: logitem)
-                            }
-                        }
-                        .headerProminence(.increased)
+            .padding(.all, 5)
+            VStack (spacing: 0) {
+                ScrollView {
+                    Section (header: LogHeaderView(mode: $clock.timingLine)) {
+                        ForEach($log.items.reversed()) {
+                            logitem in LogItemView(logitem: logitem, mode: $clock.timingLine)
+                        }.background(Color.primaryBackground)
                     }
+                    //.headerProminence(.increased)
                 }
+                .padding()
+                .background(Color.secondaryBackground)
             }
         }
     }
@@ -45,12 +40,14 @@ struct LogView: View {
 
 struct LogView_Previews:PreviewProvider {
     static var previews: some View {
-        let samplelogItems: [LogItem] = [LogItem(id: 1, when: Date.init(), bakkant: 2.34, tee: 3.33),
-                                    LogItem(id: 1, when: Date.init(), bakkant: 3.34, tee: 4.33)]
+        let samplelogItems: [LogItem] =
+        [LogItem(id: 1, when: Date.init(), bakkant: 2340, tee: 3331, hoghog: 9877),
+        LogItem(id: 2, when: Date.init(), bakkant: 3238, tee: 4456, hoghog: 7050)]
         var samplelog: Log = Log()
         samplelog.addPost(post: samplelogItems[0])
         samplelog.addPost(post: samplelogItems[1])
-        return LogView(log: .constant(samplelog))
+        let sampleclock: Clock = Clock()
+        return LogView(log: .constant(samplelog), clock: .constant(sampleclock))
     }
 }
 

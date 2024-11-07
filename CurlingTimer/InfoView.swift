@@ -17,11 +17,12 @@ struct InfoView: View {
             VStack {
                 Text("Curling Timer Description").font(.title)
                 Text("""
-Used to time a stone after it has been set. Either from Back to Hog or Tee to Hog.\n
-Timing Strategy is a setting for which line to start the time from, Back or Tee.\n
-The time that is not clocked is calculated. Therefore you get time for both Back and Tee.\n
-All times are logged.\n
-The log is reset when restarting the app and when the user chooses to do so i the Timer Settings.
+This app is used to time a stone after it has been set. Either from Back to Hog , Tee to Hog or Hog to Hog.\n
+Timing Strategy is a setting for which line to start the time from, Back, Tee or Hog.\n
+For the Tee to Hog and Back to Hog timing strategy the time that is not clocked is calculated. Therefore you get time for both Tee and Back.\n
+It is possible to se both the clocked time and calculated time when running the timer. This is a setting called Presentation Mode.\n
+All times are logged. \n
+The log is reset when closing the app, the user changes Timing Strategy or when the user chooses to do so.
 """).padding()
             }
         }

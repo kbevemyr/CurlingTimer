@@ -10,18 +10,23 @@ import SwiftUI
 struct LogItemView: View {
     
     @Binding var logitem:LogItem
-    
-    let blue3 = Color(UIColor(named: "LogItemColor")!)
+    @Binding var mode: Clock.TimerStrategy
     
     var body: some View {
         HStack {
-            Text(dateString(date:logitem.when)).font(.title3)
+            Text(dateString(date:logitem.when))
+                .font(.title3).padding(.trailing, 10)
             Spacer()
-            Text(timeString(time: logitem.tee)).font(.title3)
-            Spacer()
-            Text(timeString(time: logitem.bakkant)).font(.title3)
+            if ((mode == .tee) || (mode == .back)) {
+                Text(timeString(time: logitem.tee)).font(.title3)
+                    //.padding(.trailing,20)
+                Spacer()
+                Text(timeString(time: logitem.bakkant)).font(.title3)
+                    //.padding(.trailing, 15)
+            } else {
+                Text(timeString(time: logitem.hoghog)).font(.title3)
+            }
         }
-        .padding()
     }
     
     var dateFormat: DateFormatter {
@@ -35,16 +40,21 @@ struct LogItemView: View {
          return time
     }
     
-    func timeString(time: Double) -> String{
-        let time = String(format: "%.2f", time/1000)
-        return time
+    func timeString(time: Double) -> String {
+        if (time < 0.01) {
+            return ""
+        } else {
+            let timeStr = String(format: "%.2f", time/1000)
+            return timeStr
+        }
     }
 }
 
 struct LogItemView_Previews: PreviewProvider {
     static var previews: some View {
-        let logitemsample:LogItem = LogItem(id: 1, when: Date.init(), bakkant: 2340, tee: 3330)
-        LogItemView(logitem: .constant(logitemsample))
+        let logitemsample:LogItem = LogItem(id: 1, when: Date.init(), bakkant: 2340, tee: 3330, hoghog:0)
+        let mode:Clock.TimerStrategy = .tee
+        LogItemView(logitem: .constant(logitemsample), mode: .constant(mode))
     }
 }
 

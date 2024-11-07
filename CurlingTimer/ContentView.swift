@@ -10,31 +10,39 @@ import SwiftUI
 struct ContentView: View {
     @State var log:Log = Log()
     @State var clock:Clock = Clock()
+    @State private var showingSettings = false
+    @State private var showingInfo = false
     
     var body: some View {
-        TabView {
-            ClockView(log: $log, clock: $clock)
-                .tabItem {
-                    Image(systemName: "clock")
-                    Text("Clock")
-                }
-            LogView(log: $log)
-                .tabItem {
-                    Image(systemName: "list.bullet")
-                    Text("Log")
-                }
-            
-            InfoView()
-                .tabItem {
-                    Image(systemName: "info.circle")
-                    Text("Info")
-                }
-            
-            SettingView(clock: $clock, log: $log)
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
+        VStack {
+            NavigationStack {
+                LogView(log: $log, clock: $clock)
+                .padding(.all, 10)
+                ClockView(log: $log, clock: $clock)
+                .padding()
+                Spacer()
+                .navigationTitle("Curling Timer")
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button("Info") {
+                                showingInfo = true
+                            }
+                            . sheet(isPresented: $showingInfo) {
+                                InfoView()
+                            }
+                        }
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button(action: {
+                                showingSettings = true
+                            }) {
+                                Image(systemName: "gear")
+                            }
+                            .fullScreenCover(isPresented: $showingSettings) {
+                                SettingView(clock: $clock, log: $log)
+                            }
+                        }
+                    }
+            }
         }
     }
 }
