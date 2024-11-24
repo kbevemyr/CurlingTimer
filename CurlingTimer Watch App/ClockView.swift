@@ -30,6 +30,7 @@ struct ClockView: View {
                                 clock.updateTime()
                             }
                         Spacer()
+                        Text(clock.timingLine.stringValue()).font(.title3).frame(alignment: .center)
                     }
                 )
         }
@@ -41,7 +42,7 @@ struct ClockView: View {
                 clock.stopTime()
                 let teetime = clock.getTeeTime()
                 let backtime = clock.getBackTime()
-                let newPost = LogItem(id: log.postcounter, when: clock.now, bakkant: backtime, tee: teetime)
+                let newPost = LogItem(id: log.postcounter, when: clock.now, bakkant: backtime, tee: teetime, hoghog: 0)
                 log.addPost(post: newPost)
                 self.isRunning.toggle()
             } else {
@@ -120,8 +121,8 @@ struct ClockView: View {
     
     struct ClockView_Previews: PreviewProvider {
         static var previews: some View {
-            let samplelogItems: [LogItem] = [LogItem(id: 1, when: Date.init(), bakkant: 2.34, tee: 3.33),
-                                        LogItem(id: 1, when: Date.init(), bakkant: 3.34, tee: 4.33)]
+            let samplelogItems: [LogItem] = [LogItem(id: 1, when: Date.init(), bakkant: 2.34, tee: 3.33, hoghog: 0),
+                                        LogItem(id: 1, when: Date.init(), bakkant: 3.34, tee: 4.33, hoghog: 0)]
             var samplelog: Log = Log()
             samplelog.addPost(post: samplelogItems[0])
             samplelog.addPost(post: samplelogItems[1])

@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct LogItemView: View {
-    
     @Binding var logitem:LogItem
+    @Binding var mode: Clock.TimerStrategy
     
     let bgcolor = Color(UIColor(named: "LogItemColor")!)
     
     var body: some View {
         HStack {
-            Text(dateString(date:logitem.when)).font(.footnote)
+            Text(dateString(date:logitem.when))
+                .font(.footnote).padding(.trailing, 10)
             Spacer()
-            Text(timeString(time: logitem.tee)).font(.title3)
-            Spacer()
-            Text(timeString(time: logitem.bakkant)).font(.title3)
+            if ((mode == .tee) || (mode == .back)) {
+                Text(timeString(time: logitem.tee)).font(.title3)
+                Spacer()
+                Text(timeString(time: logitem.bakkant)).font(.title3)
+            } else {
+                Text(timeString(time: logitem.hoghog)).font(.title3)
+            }
         }.listRowBackground(bgcolor)
     }
     
@@ -42,7 +47,8 @@ struct LogItemView: View {
 
 struct LogItemView_Previews: PreviewProvider {
     static var previews: some View {
-        let logitemsample:LogItem = LogItem(id: 1, when: Date.init(), bakkant: 2340, tee: 3330)
-        LogItemView(logitem: .constant(logitemsample))
+        let logitemsample:LogItem = LogItem(id: 1, when: Date.init(), bakkant: 2340, tee: 3330, hoghog: 8.8)
+        let mode:Clock.TimerStrategy = .tee
+        LogItemView(logitem: .constant(logitemsample), mode: .constant(mode))
     }
 }

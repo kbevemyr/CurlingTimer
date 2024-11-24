@@ -13,6 +13,7 @@ struct LogItem: Hashable, Codable, Identifiable {
     var when: Date
     var bakkant: Double
     var tee: Double
+    var hoghog: Double
 }
 
 struct Log {

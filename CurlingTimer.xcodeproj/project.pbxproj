@@ -18,7 +18,6 @@
 		54B9F2472B66A34A00DE5A38 /* CurlingTimer Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 54B9F2462B66A34A00DE5A38 /* CurlingTimer Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		54B9F24C2B66A34A00DE5A38 /* CurlingTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F24B2B66A34A00DE5A38 /* CurlingTimerApp.swift */; };
 		54B9F24E2B66A34A00DE5A38 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F24D2B66A34A00DE5A38 /* ContentView.swift */; };
-		54B9F2502B66A34B00DE5A38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54B9F24F2B66A34B00DE5A38 /* Assets.xcassets */; };
 		54B9F2532B66A34B00DE5A38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54B9F2522B66A34B00DE5A38 /* Preview Assets.xcassets */; };
 		54B9F25F2B66A37600DE5A38 /* LogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25D2B66A37500DE5A38 /* LogModel.swift */; };
 		54B9F2602B66A37600DE5A38 /* ClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25E2B66A37500DE5A38 /* ClockModel.swift */; };
@@ -31,6 +30,7 @@
 		54E658E22BC040FD00DE062A /* ClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25E2B66A37500DE5A38 /* ClockModel.swift */; };
 		54E658E32BC0410400DE062A /* LogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25D2B66A37500DE5A38 /* LogModel.swift */; };
 		54FEDB012CBAE56A002BAE2B /* LogHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEDB002CBAE56A002BAE2B /* LogHeaderView.swift */; };
+		54FEDB022CDBD844002BAE2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54B9F23D2B66A34A00DE5A38 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,17 +70,17 @@
 		54B9F2462B66A34A00DE5A38 /* CurlingTimer Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CurlingTimer Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54B9F24B2B66A34A00DE5A38 /* CurlingTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurlingTimerApp.swift; sourceTree = "<group>"; };
 		54B9F24D2B66A34A00DE5A38 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		54B9F24F2B66A34B00DE5A38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54B9F2522B66A34B00DE5A38 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		54B9F25D2B66A37500DE5A38 /* LogModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogModel.swift; sourceTree = "<group>"; };
 		54B9F25E2B66A37500DE5A38 /* ClockModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockModel.swift; sourceTree = "<group>"; };
 		54B9F2612B66A38D00DE5A38 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		54B9F2622B66A38D00DE5A38 /* LogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		54B9F2622B66A38D00DE5A38 /* LogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.plist; };
 		54B9F2632B66A38D00DE5A38 /* LogItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItemView.swift; sourceTree = "<group>"; };
 		54B9F2672B66A3A300DE5A38 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		54E658DE2BBC6DA500DE062A /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		54E658E02BBC6E3900DE062A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		54FEDB002CBAE56A002BAE2B /* LogHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHeaderView.swift; sourceTree = "<group>"; };
+		54FEDB032CF3AB48002BAE2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +104,8 @@
 		54B9F22D2B66A34800DE5A38 = {
 			isa = PBXGroup;
 			children = (
+				54FEDB032CF3AB48002BAE2B /* Info.plist */,
+				54B9F23D2B66A34A00DE5A38 /* Assets.xcassets */,
 				54E658DD2B78E70700DE062A /* Model */,
 				54B9F2382B66A34800DE5A38 /* CurlingTimer */,
 				54B9F24A2B66A34A00DE5A38 /* CurlingTimer Watch App */,
@@ -131,7 +133,6 @@
 				549A63BC2BC302E900C536B3 /* LogView.swift */,
 				549A63C42BC32DEB00C536B3 /* LogItemView.swift */,
 				549A63CA2BCC060100C536B3 /* LogHeaderView.swift */,
-				54B9F23D2B66A34A00DE5A38 /* Assets.xcassets */,
 				54B9F23F2B66A34A00DE5A38 /* Preview Content */,
 			);
 			path = CurlingTimer;
@@ -155,7 +156,6 @@
 				54FEDB002CBAE56A002BAE2B /* LogHeaderView.swift */,
 				54B9F2632B66A38D00DE5A38 /* LogItemView.swift */,
 				54B9F2612B66A38D00DE5A38 /* SettingView.swift */,
-				54B9F24F2B66A34B00DE5A38 /* Assets.xcassets */,
 				54B9F2512B66A34B00DE5A38 /* Preview Content */,
 			);
 			path = "CurlingTimer Watch App";
@@ -268,8 +268,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54FEDB022CDBD844002BAE2B /* Assets.xcassets in Resources */,
 				54B9F2532B66A34B00DE5A38 /* Preview Assets.xcassets in Resources */,
-				54B9F2502B66A34B00DE5A38 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +446,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CurlingTimer Watch App/Preview Content\"";
@@ -477,6 +478,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CurlingTimer Watch App/Preview Content\"";
@@ -516,6 +518,7 @@
 				DEVELOPMENT_TEAM = R9W22HZP7P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CurlingTimer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CurlingTimer;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -554,6 +557,7 @@
 				DEVELOPMENT_TEAM = R9W22HZP7P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CurlingTimer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CurlingTimer;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

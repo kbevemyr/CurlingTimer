@@ -17,7 +17,7 @@ struct ContentView: View {
                 ClockView(log: $log, clock: $clock)
             }.containerBackground(.red.gradient, for: .tabView)
             NavigationStack {
-                LogView(log: $log)
+                LogView(log: $log, clock: $clock)
             }.containerBackground(.blue.gradient, for: .tabView)
             NavigationStack {
                 SettingView(clock: $clock, log: $log)

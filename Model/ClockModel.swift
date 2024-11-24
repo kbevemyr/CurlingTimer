@@ -12,6 +12,7 @@ struct Clock {
     enum TimerStrategy: Int, CaseIterable {
         case tee
         case back
+        case hoghog
         
         // Convert to string to display in menus and pickers.
         func stringValue() -> String {
@@ -20,6 +21,8 @@ struct Clock {
                 return "Tee -> Hog"
             case .back:
                 return "Back -> Hog"
+            case .hoghog:
+                return "Hog -> Hog"
             }
         }
     }
@@ -108,6 +111,24 @@ struct Clock {
             backtime = time
         }
         return backtime
+    }
+    
+    func getTime() -> (tee: Double, back: Double, hoghog: Double) {
+        let time: Double = Double(Int64(bitPattern: t_end))
+        var tee: Double = 0
+        var back: Double = 0
+        switch(timingLine) {
+            case .tee:
+                tee = time
+                back = calcBackTime(tee: time)
+                return (tee, back, 0)
+            case .back:
+                tee = calcTeeTime(back: time)
+                back = time
+                return (tee, back, 0)
+            case .hoghog:
+                return (0, 0, time)
+        }
     }
     
 }
