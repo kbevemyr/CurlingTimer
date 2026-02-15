@@ -14,12 +14,13 @@ struct LogView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("\(clock.timingLine.stringValue())")
+                Text("\(clock.timingLine.stringValue())").foregroundColor(Color.secondaryBackground)
+                    //.opacity(clock.presentation == .one ?  0 : 1)
                 Spacer()
                 Button("Clear log") {
                     log.clearLog()
                     clock.initTime()
-                }
+                }.foregroundColor(Color.secondaryBackground)
             }
             .padding(.all, 5)
             VStack (spacing: 0) {
@@ -27,12 +28,17 @@ struct LogView: View {
                     Section (header: LogHeaderView(mode: $clock.timingLine)) {
                         ForEach($log.items.reversed()) {
                             logitem in LogItemView(logitem: logitem, mode: $clock.timingLine)
-                        }.background(Color.primaryBackground)
+                        }
                     }
-                    //.headerProminence(.increased)
                 }
                 .padding()
-                .background(Color.secondaryBackground)
+                .mask {
+                    LinearGradient(
+                        colors: [.black, .black, .clear],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                }
             }
         }
     }

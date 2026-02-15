@@ -16,28 +16,41 @@ struct ClockView: View {
     @Binding var log: Log
     @Binding var clock: Clock
     
+    let thickness: CGFloat = 30
+    
     var body: some View {
-        VStack {
+        ZStack {
             Circle()
-                .fill(Color(UIColor.systemBackground))
-                .opacity(0.8)
-                .frame(width: 300, height: 300)
+                .stroke(getClockColor(), lineWidth: thickness)
                 .overlay(
-                    Circle()
-                        .stroke(getClockColor(), lineWidth: 20)
-                        .overlay(
-                            VStack {
-                                Spacer()
-                                Text(getClockLabel()).font(.largeTitle).frame(alignment: .center)
-                                //Spacer()
-                                Text(getClockTime()).font(.largeTitle)
-                                    .onReceive(timer) { _ in
-                                        clock.updateTime()
-                                    }
-                                Spacer()
+                    VStack {
+                        Spacer()
+                        Text(getClockTime()).font(.system(size: 72, weight: .bold, design: .default))
+                            .onReceive(timer) { _ in
+                                clock.updateTime()
                             }
-                    )
+                        Spacer()
+                    }
                 )
+            
+            // Text background
+            Circle()
+                .trim(from: 0.81, to: 0.98)
+                .stroke(
+                    Color.primaryBackground,
+                    style: StrokeStyle(lineWidth: thickness+2, lineCap: .butt)
+                )
+                .rotationEffect(.degrees(-90)) // start at top
+            
+            // Curved text
+            CurvedText(
+                text: getClockLabel(),
+                radius: 155,                         // text radius (tweak)
+                startAngle: .degrees(-150),          // where the first letter starts
+                endAngle: .degrees(-105),            // where the last letter ends
+                font: .system(size: 30, weight: .bold, design: .default),
+                color: getClockColor()
+            )
         }
         .contentShape(Circle())
         .onTapGesture {
@@ -59,6 +72,7 @@ struct ClockView: View {
         }
 //        .containerBackground(LinearGradient(gradient: Gradient(colors: [getClockColor(), .black]), startPoint: .top, endPoint: .bottom), for: .tabView)
         .sensoryFeedback(.start, trigger: isRunning)
+        
     }
 
     func timeString(time: Double) -> String {
@@ -68,9 +82,9 @@ struct ClockView: View {
     
     private func getClockLabel() -> String {
         if self.isRunning {
-            return "Stop"
+            return "STOP"
         } else {
-            return "Start"
+            return "START"
         }
     }
     
@@ -124,6 +138,44 @@ struct ClockView: View {
             return Color(UIColor(named: "StartColor")!)
         }
     }
+    
+    struct CurvedText: View {
+        let text: String
+        let radius: CGFloat
+        let startAngle: Angle
+        let endAngle: Angle
+        let font: Font
+        let color: Color
+
+        var body: some View {
+            let chars = Array(text)
+            let count = max(chars.count, 1)
+            let total = endAngle.degrees - startAngle.degrees
+            let step = count > 1 ? total / Double(count - 1) : 0
+
+            ZStack {
+                ForEach(chars.indices, id: \.self) { i in
+                    let angle = startAngle.degrees + (Double(i) * step)
+
+                    Text(String(chars[i]))
+                        .font(font)
+                        .foregroundStyle(color)
+                    
+                        // 👇 THIS hides the ring behind letters
+                        .padding(2)
+                    
+                        // Move letter out from center
+                        .offset(x: 0, y: -radius)
+                        // Rotate letter around center to arc position
+                        .rotationEffect(.degrees(angle))
+                        // Optional: tilt glyph to follow tangent (usually looks better)
+                        .rotationEffect(.degrees(90), anchor: .center)
+                }
+            }
+            .backgroundStyle(Color.primaryBackground)
+        }
+    }
+
     
     struct ClockView_Previews: PreviewProvider {
         static var previews: some View {

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct InfoView: View {
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
         VStack {
             Image(uiImage: UIImage(named: "Logo")!)
@@ -16,6 +18,9 @@ struct InfoView: View {
                 .padding()
             VStack {
                 Text("Curling Timer Description").font(.title)
+                Button("Close") {
+                    dismiss()
+                }
                 Text("""
 This app is used to time a stone after it has been set. Either from Back to Hog , Tee to Hog or Hog to Hog.\n
 Timing Strategy is a setting for which line to start the time from, Back, Tee or Hog.\n

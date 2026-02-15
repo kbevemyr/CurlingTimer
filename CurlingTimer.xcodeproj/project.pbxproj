@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -83,6 +83,10 @@
 		54FEDB032CF3AB48002BAE2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		544C2AE32F41234A003CD5D7 /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		54B9F2332B66A34800DE5A38 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -104,6 +108,7 @@
 		54B9F22D2B66A34800DE5A38 = {
 			isa = PBXGroup;
 			children = (
+				544C2AE32F41234A003CD5D7 /* Resources */,
 				54FEDB032CF3AB48002BAE2B /* Info.plist */,
 				54B9F23D2B66A34A00DE5A38 /* Assets.xcassets */,
 				54E658DD2B78E70700DE062A /* Model */,
@@ -195,6 +200,9 @@
 			dependencies = (
 				54B9F2492B66A34A00DE5A38 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				544C2AE32F41234A003CD5D7 /* Resources */,
+			);
 			name = CurlingTimer;
 			productName = CurlingTimer;
 			productReference = 54B9F2362B66A34800DE5A38 /* CurlingTimer.app */;
@@ -211,6 +219,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				544C2AE32F41234A003CD5D7 /* Resources */,
 			);
 			name = "CurlingTimer Watch App";
 			productName = "CurlingTimer Watch App";
@@ -379,6 +390,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -439,6 +451,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;

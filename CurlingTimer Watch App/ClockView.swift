@@ -25,7 +25,7 @@ struct ClockView: View {
                     VStack {
                         Text(getClockLabel()).font(.title2).frame(alignment: .center)
                         Spacer()
-                        Text(getClockTime()).font(.largeTitle)
+                        Text(getClockTime()).font(.system(size: 72, weight: .bold, design: .default))
                             .onReceive(timer) { _ in
                                 clock.updateTime()
                             }

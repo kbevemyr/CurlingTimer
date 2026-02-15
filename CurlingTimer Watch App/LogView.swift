@@ -1,6 +1,6 @@
 //
 //  LogView.swift
-//  BevemyrTimer Watch App
+//  CurlingTimer Watch App
 //
 //  Created by Katrin Boberg Bevemyr on 2023-12-30.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LogView: View {
-    @Binding var log: Log;
+    @Binding var log: Log
     @Binding var clock: Clock
         
     var body: some View {

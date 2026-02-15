@@ -11,8 +11,6 @@ struct LogItemView: View {
     @Binding var logitem:LogItem
     @Binding var mode: Clock.TimerStrategy
     
-    let bgcolor = Color(UIColor(named: "LogItemColor")!)
-    
     var body: some View {
         HStack {
             Text(dateString(date:logitem.when))
@@ -25,7 +23,7 @@ struct LogItemView: View {
             } else {
                 Text(timeString(time: logitem.hoghog)).font(.title3)
             }
-        }.listRowBackground(bgcolor)
+        }
     }
     
     var dateFormat: DateFormatter {
