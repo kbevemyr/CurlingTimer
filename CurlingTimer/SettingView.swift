@@ -31,6 +31,7 @@ struct SettingView: View {
                         }
                     }
             }
+            /*
             .padding()
             VStack {
                 Text("Presentation Mode").font(.title2)
@@ -42,6 +43,8 @@ struct SettingView: View {
                 }.pickerStyle(.menu)
             }
             .padding()
+             */
+             
             Button("Close Settings") {
                 log.clearLog()
                 clock.initTime()
@@ -49,6 +52,7 @@ struct SettingView: View {
             }
             .buttonStyle(.bordered)
             .padding()
+            
             Spacer()
         }
     }

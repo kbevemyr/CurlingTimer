@@ -15,19 +15,21 @@ struct LogView: View {
         if log.items.isEmpty {
             Text("No times stored")
         } else {
-            VStack (spacing: 0) {
-                List {
-                    Section (header: LogHeaderView(mode: $clock.timingLine)) {
-                        ForEach($log.items.reversed()) {
-                            logitem in LogItemView(logitem: logitem, mode: $clock.timingLine)
+            VStack(spacing: 0) {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        LogHeaderView(mode: $clock.timingLine)
+                        
+                        ForEach($log.items.reversed()) { logitem in
+                            LogItemView(logitem: logitem, mode: $clock.timingLine)
                         }
                     }
-                    .headerProminence(.increased)
                 }
             }
         }
     }
 }
+
 
 struct LogView_Previews:PreviewProvider {
     static var previews: some View {

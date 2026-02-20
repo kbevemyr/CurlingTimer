@@ -15,26 +15,42 @@ struct ContentView: View {
     @State private var showingInfo = false
 
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                LogView(log: $log, clock: $clock)
-                    .padding(.all, 10)
-
-                ClockView(log: $log, clock: $clock)
-                    .padding()
-
-                Spacer()
-            }
-            .toolbar(.hidden, for: .navigationBar) // hide system nav bar
-            .safeAreaInset(edge: .top) {
-                header
-            }
-            .fullScreenCover(isPresented: $showingSettings) {
-                SettingView(clock: $clock, log: $log)
-            }
-            .fullScreenCover(isPresented: $showingInfo) {
-                InfoView()
-            }
+        GeometryReader { geometry in
+            let isLandscape = geometry.size.width > geometry.size.height
+                            
+                NavigationStack {
+                    VStack(spacing: 0) {
+                        
+                        if isLandscape {
+                            HStack {
+                                LogView(log: $log, clock: $clock)
+                                    .padding(.all, 2)
+                                    .frame(maxHeight: .infinity)  // takes all remaining space
+                                
+                                ClockView(log: $log, clock: $clock)
+                                    .padding(.horizontal, 40)
+                            }
+                        } else {
+                            
+                            LogView(log: $log, clock: $clock)
+                                .padding(.all, 2)
+                                .frame(maxHeight: .infinity)  // takes all remaining space
+                            
+                            ClockView(log: $log, clock: $clock)
+                                .padding(.horizontal, 40)
+                        }
+                    }
+                    .toolbar(.hidden, for: .navigationBar) // hide system nav bar
+                    .safeAreaInset(edge: .top) {
+                        header
+                    }
+                    .fullScreenCover(isPresented: $showingSettings) {
+                        SettingView(clock: $clock, log: $log)
+                    }
+                    .fullScreenCover(isPresented: $showingInfo) {
+                        InfoView()
+                    }
+                }
         }
     }
 

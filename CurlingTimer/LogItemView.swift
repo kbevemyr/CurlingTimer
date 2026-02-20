@@ -5,48 +5,48 @@
 //  Created by Katrin Boberg Bevemyr on 2024-04-07.
 //
 
+//
+//  LogItemView.swift
+//  CurlingTimer
+//
+
 import SwiftUI
 
 struct LogItemView: View {
-    
-    @Binding var logitem:LogItem
+    @Binding var logitem: LogItem
     @Binding var mode: Clock.TimerStrategy
-    
+
     var body: some View {
         HStack {
-            Text(dateString(date:logitem.when))
-                .font(.title3).padding(.trailing, 10)
-            Spacer()
-            if ((mode == .tee) || (mode == .back)) {
-                Text(timeString(time: logitem.tee)).font(.title3)
-                    //.padding(.trailing,20)
-                Spacer()
-                Text(timeString(time: logitem.bakkant)).font(.title3)
-                    //.padding(.trailing, 15)
+            Text(dateString(date: logitem.when))
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            if mode == .tee || mode == .back {
+                Text(timeString(time: logitem.tee))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(timeString(time: logitem.bakkant))
+                    .frame(maxWidth: .infinity, alignment: .leading)
             } else {
-                Text(timeString(time: logitem.hoghog)).font(.title3)
+                Text(timeString(time: logitem.hoghog))
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
+        .font(.title3)
     }
-    
+
     var dateFormat: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm:ss"
         return formatter
     }
-    
+
     func dateString(date: Date) -> String {
-        let time = dateFormat.string(from: date)
-         return time
+        dateFormat.string(from: date)
     }
-    
+
     func timeString(time: Double) -> String {
-        if (time < 0.01) {
-            return ""
-        } else {
-            let timeStr = String(format: "%.2f", time/1000)
-            return timeStr
-        }
+        guard time >= 0.01 else { return "" }
+        return String(format: "%.2f", time / 1000)
     }
 }
 

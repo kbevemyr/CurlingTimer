@@ -19,60 +19,60 @@ struct ClockView: View {
     let thickness: CGFloat = 30
     
     var body: some View {
-        ZStack {
-            Circle()
-                .stroke(getClockColor(), lineWidth: thickness)
-                .overlay(
-                    VStack {
-                        Spacer()
-                        Text(getClockTime()).font(.system(size: 72, weight: .bold, design: .default))
-                            .onReceive(timer) { _ in
-                                clock.updateTime()
-                            }
-                        Spacer()
-                    }
-                )
+        GeometryReader { geometry in
+            let size = min(geometry.size.width, geometry.size.height)
+            let radius = size / 2
             
-            // Text background
-            Circle()
-                .trim(from: 0.81, to: 0.98)
-                .stroke(
-                    Color.primaryBackground,
-                    style: StrokeStyle(lineWidth: thickness+2, lineCap: .butt)
+            ZStack {
+                Circle()
+                    .fill(Color.neutral)
+                Circle()
+                    .stroke(getClockColor(), lineWidth: thickness)
+                VStack {
+                    Spacer()
+                    Text(getClockTime())
+                        .font(.system(size: size * 0.28, weight: .bold, design: .default))
+                        .onReceive(timer) { _ in
+                            clock.updateTime()
+                        }
+                    Spacer()
+                }
+
+                // Curved text background
+                Circle()
+                    .trim(from: 0.81, to: 0.98)
+                    .stroke(
+                        Color.neutral,
+                        style: StrokeStyle(lineWidth: thickness + 2, lineCap: .butt)
+                    )
+                    .rotationEffect(.degrees(-90))
+
+                // Curved text
+                CurvedText(
+                    text: getClockLabel(),
+                    radius: radius * 0.97,                // relative to circle size
+                    startAngle: .degrees(-150),
+                    endAngle: .degrees(-105),
+                    font: .system(size: size * 0.13, weight: .bold, design: .default),
+                    color: getClockColor()
                 )
-                .rotationEffect(.degrees(-90)) // start at top
-            
-            // Curved text
-            CurvedText(
-                text: getClockLabel(),
-                radius: 155,                         // text radius (tweak)
-                startAngle: .degrees(-150),          // where the first letter starts
-                endAngle: .degrees(-105),            // where the last letter ends
-                font: .system(size: 30, weight: .bold, design: .default),
-                color: getClockColor()
-            )
-        }
-        .contentShape(Circle())
-        .onTapGesture {
-            // Action to perform when the rectangle is tapped
-            if self.isRunning {
-                // Start -> Stop
-                clock.stopTime()
-                //let teetime = clock.getTeeTime()
-                //let backtime = clock.getBackTime()
-                let clockedtime = clock.getTime()
-                let newPost = LogItem(id: log.postcounter, when: clock.now, bakkant: clockedtime.back, tee: clockedtime.tee, hoghog: clockedtime.hoghog)
-                log.addPost(post: newPost)
-                self.isRunning.toggle()
-            } else {
-                // Stop -> Start
-                self.isRunning.toggle()
-                clock.initTime()
             }
+            .contentShape(Circle())
+            .onTapGesture {
+                if self.isRunning {
+                    clock.stopTime()
+                    let clockedtime = clock.getTime()
+                    let newPost = LogItem(id: log.postcounter, when: clock.now, bakkant: clockedtime.back, tee: clockedtime.tee, hoghog: clockedtime.hoghog)
+                    log.addPost(post: newPost)
+                    self.isRunning.toggle()
+                } else {
+                    self.isRunning.toggle()
+                    clock.initTime()
+                }
+            }
+            .sensoryFeedback(.start, trigger: isRunning)
         }
-//        .containerBackground(LinearGradient(gradient: Gradient(colors: [getClockColor(), .black]), startPoint: .top, endPoint: .bottom), for: .tabView)
-        .sensoryFeedback(.start, trigger: isRunning)
-        
+        .aspectRatio(1, contentMode: .fit) // keeps it a circle
     }
 
     func timeString(time: Double) -> String {
@@ -162,8 +162,7 @@ struct ClockView: View {
                         .foregroundStyle(color)
                     
                         // 👇 THIS hides the ring behind letters
-                        .padding(2)
-                    
+                        .padding(1)
                         // Move letter out from center
                         .offset(x: 0, y: -radius)
                         // Rotate letter around center to arc position

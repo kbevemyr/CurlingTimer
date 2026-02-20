@@ -26,12 +26,14 @@ struct SettingView: View {
                     log.clearLog()
                     clock.initTime()
                 }
+            /*
             Picker("Presentation Mode", selection: $clock.presentation) {
                 ForEach(Clock.PresentationMode.allCases, id: \.self) { item in
                     Text("\(item.stringValue())")
                     //.tag(item)
                 }
             }.pickerStyle(.navigationLink)
+             */
             Button("Clear log") {
                 //log.items = []
                 //log.postcounter = 0
