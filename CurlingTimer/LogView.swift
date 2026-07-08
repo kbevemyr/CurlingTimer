@@ -13,7 +13,7 @@ import SwiftUI
 
 struct LogView: View {
     @Binding var log: Log
-    @Binding var clock: Clock
+    @Bindable var clock: Clock
     @State private var showingClearConfirmation = false
 
     var body: some View {
@@ -83,7 +83,7 @@ struct LogView_Previews:PreviewProvider {
         samplelog.addPost(post: samplelogItems[0])
         samplelog.addPost(post: samplelogItems[1])
         let sampleclock: Clock = Clock()
-        return LogView(log: .constant(samplelog), clock: .constant(sampleclock))
+        return LogView(log: .constant(samplelog), clock: sampleclock)
     }
 }
 

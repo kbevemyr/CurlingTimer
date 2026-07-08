@@ -31,6 +31,12 @@
 		54E658E32BC0410400DE062A /* LogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25D2B66A37500DE5A38 /* LogModel.swift */; };
 		54FEDB012CBAE56A002BAE2B /* LogHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FEDB002CBAE56A002BAE2B /* LogHeaderView.swift */; };
 		54FEDB022CDBD844002BAE2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54B9F23D2B66A34A00DE5A38 /* Assets.xcassets */; };
+		54D1000000000000000000A2 /* TimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D1000000000000000000A1 /* TimeFormat.swift */; };
+		54D1000000000000000000A3 /* TimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D1000000000000000000A1 /* TimeFormat.swift */; };
+		54D1000000000000000000B2 /* ClockModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D1000000000000000000B1 /* ClockModelTests.swift */; };
+		54D1000000000000000000B3 /* ClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25E2B66A37500DE5A38 /* ClockModel.swift */; };
+		54D1000000000000000000B4 /* LogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9F25D2B66A37500DE5A38 /* LogModel.swift */; };
+		54D1000000000000000000B5 /* TimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D1000000000000000000A1 /* TimeFormat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +87,9 @@
 		54E658E02BBC6E3900DE062A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		54FEDB002CBAE56A002BAE2B /* LogHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHeaderView.swift; sourceTree = "<group>"; };
 		54FEDB032CF3AB48002BAE2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54D1000000000000000000A1 /* TimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormat.swift; sourceTree = "<group>"; };
+		54D1000000000000000000B1 /* ClockModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockModelTests.swift; sourceTree = "<group>"; };
+		54D1000000000000000000C1 /* CurlingTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurlingTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -102,6 +111,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		54D1000000000000000000C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -114,6 +130,7 @@
 				54E658DD2B78E70700DE062A /* Model */,
 				54B9F2382B66A34800DE5A38 /* CurlingTimer */,
 				54B9F24A2B66A34A00DE5A38 /* CurlingTimer Watch App */,
+				54D1000000000000000000C2 /* CurlingTimerTests */,
 				54B9F2372B66A34800DE5A38 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,6 +140,7 @@
 			children = (
 				54B9F2362B66A34800DE5A38 /* CurlingTimer.app */,
 				54B9F2462B66A34A00DE5A38 /* CurlingTimer Watch App.app */,
+				54D1000000000000000000C1 /* CurlingTimerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,8 +197,17 @@
 			children = (
 				54B9F25E2B66A37500DE5A38 /* ClockModel.swift */,
 				54B9F25D2B66A37500DE5A38 /* LogModel.swift */,
+				54D1000000000000000000A1 /* TimeFormat.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		54D1000000000000000000C2 /* CurlingTimerTests */ = {
+			isa = PBXGroup;
+			children = (
+				54D1000000000000000000B1 /* ClockModelTests.swift */,
+			);
+			path = CurlingTimerTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +255,22 @@
 			productReference = 54B9F2462B66A34A00DE5A38 /* CurlingTimer Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
+		54D1000000000000000000C3 /* CurlingTimerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54D1000000000000000000C6 /* Build configuration list for PBXNativeTarget "CurlingTimerTests" */;
+			buildPhases = (
+				54D1000000000000000000C4 /* Sources */,
+				54D1000000000000000000C5 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CurlingTimerTests;
+			productName = CurlingTimerTests;
+			productReference = 54D1000000000000000000C1 /* CurlingTimerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -261,6 +304,7 @@
 			targets = (
 				54B9F2352B66A34800DE5A38 /* CurlingTimer */,
 				54B9F2452B66A34A00DE5A38 /* CurlingTimer Watch App */,
+				54D1000000000000000000C3 /* CurlingTimerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -293,6 +337,7 @@
 			files = (
 				54E658E32BC0410400DE062A /* LogModel.swift in Sources */,
 				54E658E22BC040FD00DE062A /* ClockModel.swift in Sources */,
+				54D1000000000000000000A2 /* TimeFormat.swift in Sources */,
 				54E658E12BBC6E3900DE062A /* InfoView.swift in Sources */,
 				549A63C52BC32DEB00C536B3 /* LogItemView.swift in Sources */,
 				549A63BB2BC302A300C536B3 /* SettingView.swift in Sources */,
@@ -317,6 +362,18 @@
 				54B9F24E2B66A34A00DE5A38 /* ContentView.swift in Sources */,
 				54B9F24C2B66A34A00DE5A38 /* CurlingTimerApp.swift in Sources */,
 				54B9F25F2B66A37600DE5A38 /* LogModel.swift in Sources */,
+				54D1000000000000000000A3 /* TimeFormat.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54D1000000000000000000C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54D1000000000000000000B2 /* ClockModelTests.swift in Sources */,
+				54D1000000000000000000B3 /* ClockModel.swift in Sources */,
+				54D1000000000000000000B4 /* LogModel.swift in Sources */,
+				54D1000000000000000000B5 /* TimeFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +653,42 @@
 			};
 			name = Release;
 		};
+		54D1000000000000000000C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bevemyr.CurlingTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		54D1000000000000000000C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bevemyr.CurlingTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -622,6 +715,15 @@
 			buildConfigurations = (
 				54B9F25B2B66A34B00DE5A38 /* Debug */,
 				54B9F25C2B66A34B00DE5A38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		54D1000000000000000000C6 /* Build configuration list for PBXNativeTarget "CurlingTimerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54D1000000000000000000C7 /* Debug */,
+				54D1000000000000000000C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

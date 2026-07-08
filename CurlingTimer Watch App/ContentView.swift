@@ -14,13 +14,13 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NavigationStack {
-                ClockView(log: $log, clock: $clock)
+                ClockView(log: $log, clock: clock)
             }.containerBackground(Color.primaryBackground, for: .tabView)
             NavigationStack {
-                LogView(log: $log, clock: $clock)
+                LogView(log: $log, clock: clock)
             }.containerBackground(Color.primaryBackground, for: .tabView)
             NavigationStack {
-                SettingView(clock: $clock, log: $log)
+                SettingView(clock: clock, log: $log)
             }.containerBackground(Color.primaryBackground, for: .tabView)
         }
         .tabViewStyle(.verticalPage)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {
-    @Binding var clock: Clock
+    @Bindable var clock: Clock
     @Binding var log: Log
         
     var body: some View {
@@ -20,23 +20,11 @@ struct SettingView: View {
                 }
             }.pickerStyle(.navigationLink)
                 .onChange(of: clock.timingLine) {
-                    if(Clock.TimerStrategy.hoghog == clock.timingLine) {
-                        clock.presentation = Clock.PresentationMode.one
-                    }
+                    // Changing timing strategy invalidates logged times.
                     log.clearLog()
                     clock.initTime()
                 }
-            /*
-            Picker("Presentation Mode", selection: $clock.presentation) {
-                ForEach(Clock.PresentationMode.allCases, id: \.self) { item in
-                    Text("\(item.stringValue())")
-                    //.tag(item)
-                }
-            }.pickerStyle(.navigationLink)
-             */
             Button("Clear log") {
-                //log.items = []
-                //log.postcounter = 0
                 log.clearLog()
                 clock.initTime()
             }
@@ -51,5 +39,5 @@ struct SettingView: View {
     samplelog.addPost(post: samplelogItems[0])
     samplelog.addPost(post: samplelogItems[1])
     let sampleclock: Clock = Clock()
-    return SettingView(clock: .constant(sampleclock), log: .constant(samplelog))
+    return SettingView(clock: sampleclock, log: .constant(samplelog))
 }

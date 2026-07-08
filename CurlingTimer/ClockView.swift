@@ -10,11 +10,10 @@ import SwiftUI
 
 struct ClockView: View {
     @State private var isRunning: Bool = false
- 
-    let timer = Timer.publish(every: 0.001, on: .main, in: .common).autoconnect()
-    
+    @State private var ticker: Timer?
+
     @Binding var log: Log
-    @Binding var clock: Clock
+    var clock: Clock
     
     let thickness: CGFloat = 30
     
@@ -27,14 +26,11 @@ struct ClockView: View {
                 Circle()
                     .fill(Color.neutral)
                 Circle()
-                    .stroke(getClockColor(), lineWidth: thickness)
+                    .stroke(clockColor, lineWidth: thickness)
                 VStack {
                     Spacer()
-                    Text(getClockTime())
+                    Text(clockTime)
                         .font(.system(size: size * 0.28, weight: .bold, design: .default))
-                        .onReceive(timer) { _ in
-                            clock.updateTime()
-                        }
                     Spacer()
                 }
 
@@ -49,94 +45,83 @@ struct ClockView: View {
 
                 // Curved text
                 CurvedText(
-                    text: getClockLabel(),
+                    text: clockLabel,
                     radius: radius * 0.97,                // relative to circle size
                     startAngle: .degrees(-150),
                     endAngle: .degrees(-105),
                     font: .system(size: size * 0.13, weight: .bold, design: .default),
-                    color: getClockColor()
+                    color: clockColor
                 )
             }
             .contentShape(Circle())
             .onTapGesture {
-                if self.isRunning {
-                    clock.stopTime()
-                    let clockedtime = clock.getTime()
-                    let newPost = LogItem(id: log.postcounter, when: clock.now, bakkant: clockedtime.back, tee: clockedtime.tee, hoghog: clockedtime.hoghog)
-                    log.addPost(post: newPost)
-                    self.isRunning.toggle()
-                } else {
-                    self.isRunning.toggle()
-                    clock.initTime()
-                }
+                toggleTimer()
             }
-            .sensoryFeedback(.start, trigger: isRunning)
+            .sensoryFeedback(trigger: isRunning) { _, isNowRunning in
+                isNowRunning ? .start : .success
+            }
         }
         .aspectRatio(1, contentMode: .fit) // keeps it a circle
-    }
-
-    func timeString(time: Double) -> String {
-        let time = String(format: "%.2f", time/1000)
-        return time
-    }
-    
-    private func getClockLabel() -> String {
-        if self.isRunning {
-            return "STOP"
-        } else {
-            return "START"
+        .onAppear {
+            if isRunning { startTicker() }
         }
-    }
-    
-    private func getClockTime() -> AttributedString {
-        if clock.presentation == .one {
-            getClockTime1()
-        } else {
-            getClockTime2()
+        .onDisappear {
+            stopTicker()
         }
     }
 
-    private func getClockTime1() -> AttributedString {
-        var ret: AttributedString = ""
-        
-        if self.isRunning {
-            ret = try! AttributedString(markdown:"\(timeString(time: Double(clock.currentTime)))")
+    // MARK: - Timer control
+
+    private func toggleTimer() {
+        if isRunning {
+            clock.stopTime()
+            stopTicker()
+            let clockedtime = clock.getTime()
+            let newPost = LogItem(id: log.postcounter, when: clock.now, bakkant: clockedtime.back, tee: clockedtime.tee, hoghog: clockedtime.hoghog)
+            log.addPost(post: newPost)
         } else {
-            if clock.t_end != 0 {
-                if clock.timingLine == .tee {
-                    ret = try! AttributedString(markdown:"**\(timeString(time: Double(clock.t_end)))**")
-                } else {
-                    ret = try! AttributedString(markdown:"**\(timeString(time: Double(clock.t_end)))**")
-                }
-            }
+            clock.initTime()
+            startTicker()
         }
-        return ret
+        isRunning.toggle()
     }
-    
-    private func getClockTime2() -> AttributedString {
-        var ret: AttributedString = ""
-        
-        if self.isRunning {
-            ret = try! AttributedString(markdown:"\(timeString(time: Double(clock.currentTime)))")
-        } else {
-            if clock.t_end != 0 {
-                if clock.timingLine == .tee {
-                    //try! AttributedString(markdown:
-                    ret = try! AttributedString(markdown: "**Tee: \(timeString(time: Double(clock.t_end)))** \nBack: \(timeString(time: clock.calcBackTime(tee: Double(clock.t_end))))")
-                } else {
-                    ret = try! AttributedString(markdown: "Tee: \(timeString(time: clock.calcTeeTime(back: Double(clock.t_end))))\n **Back: \(timeString(time: Double(clock.t_end)))**")
-                }
-            }
+
+    // The display only shows hundredths of a second, so 50 updates per second
+    // is plenty. The measurement itself is taken in Clock.stopTime() and does
+    // not depend on this timer.
+    private func startTicker() {
+        guard ticker == nil else { return }
+        let timer = Timer(timeInterval: 0.02, repeats: true) { _ in
+            clock.updateTime()
         }
-        return ret
+        // .common keeps the display updating while the log is being scrolled.
+        RunLoop.main.add(timer, forMode: .common)
+        ticker = timer
     }
-    
-    private func getClockColor() -> Color {
-        if self.isRunning {
-            return Color(UIColor(named: "StopColor")!)
+
+    private func stopTicker() {
+        ticker?.invalidate()
+        ticker = nil
+    }
+
+    // MARK: - Display
+
+    private var clockLabel: String {
+        isRunning ? "STOP" : "START"
+    }
+
+    private var clockTime: String {
+        if isRunning {
+            return TimeFormat.seconds(Double(clock.currentTime))
+        } else if clock.t_end != 0 {
+            return TimeFormat.seconds(Double(clock.t_end))
         } else {
-            return Color(UIColor(named: "StartColor")!)
+            return ""
         }
+    }
+
+    private var clockColor: Color {
+        isRunning ? Color.stop : Color.start
     }
     
     struct CurvedText: View {
@@ -184,7 +169,7 @@ struct ClockView: View {
             samplelog.addPost(post: samplelogItems[0])
             samplelog.addPost(post: samplelogItems[1])
             let sampleclock: Clock = Clock()
-            return ClockView(log: .constant(samplelog),clock: .constant(sampleclock))
+            return ClockView(log: .constant(samplelog),clock: sampleclock)
         }
     }
 }

@@ -18,7 +18,7 @@ struct LogHeaderView: View {
 
     var body: some View {
         HStack {
-            Text("Date")
+            Text("Time")
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity, alignment: .leading)
 

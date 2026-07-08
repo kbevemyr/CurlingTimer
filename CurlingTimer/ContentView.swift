@@ -23,20 +23,20 @@ struct ContentView: View {
                         
                         if isLandscape {
                             HStack {
-                                LogView(log: $log, clock: $clock)
+                                LogView(log: $log, clock: clock)
                                     .padding(.all, 2)
                                     .frame(maxHeight: .infinity)  // takes all remaining space
                                 
-                                ClockView(log: $log, clock: $clock)
+                                ClockView(log: $log, clock: clock)
                                     .padding(.horizontal, 40)
                             }
                         } else {
                             
-                            LogView(log: $log, clock: $clock)
+                            LogView(log: $log, clock: clock)
                                 .padding(.all, 2)
                                 .frame(maxHeight: .infinity)  // takes all remaining space
                             
-                            ClockView(log: $log, clock: $clock)
+                            ClockView(log: $log, clock: clock)
                                 .padding(.horizontal, 40)
                         }
                     }
@@ -45,7 +45,7 @@ struct ContentView: View {
                         header
                     }
                     .fullScreenCover(isPresented: $showingSettings) {
-                        SettingView(clock: $clock, log: $log)
+                        SettingView(clock: clock, log: $log)
                     }
                     .fullScreenCover(isPresented: $showingInfo) {
                         InfoView()

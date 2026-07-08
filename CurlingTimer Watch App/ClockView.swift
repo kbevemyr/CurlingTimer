@@ -9,11 +9,10 @@ import SwiftUI
 
 struct ClockView: View {
     @State private var isRunning: Bool = false
- 
-    let timer = Timer.publish(every: 0.001, on: .main, in: .common).autoconnect()
-    
+    @State private var ticker: Timer?
+
     @Binding var log: Log
-    @Binding var clock: Clock
+    var clock: Clock
     
     var body: some View {
         VStack {
@@ -23,12 +22,9 @@ struct ClockView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .overlay(
                     VStack {
-                        Text(getClockLabel()).font(.title2).frame(alignment: .center)
+                        Text(clockLabel).font(.title2).frame(alignment: .center)
                         Spacer()
-                        Text(getClockTime()).font(.system(size: 72, weight: .bold, design: .default))
-                            .onReceive(timer) { _ in
-                                clock.updateTime()
-                            }
+                        Text(clockTime).font(.system(size: 72, weight: .bold, design: .default))
                         Spacer()
                         Text(clock.timingLine.stringValue()).font(.title3).frame(alignment: .center)
                     }
@@ -36,87 +32,71 @@ struct ClockView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            // Action to perform when the rectangle is tapped
-            if self.isRunning {
-                // Stop -> Start
-                clock.stopTime()
-                let teetime = clock.getTeeTime()
-                let backtime = clock.getBackTime()
-                let newPost = LogItem(id: log.postcounter, when: clock.now, bakkant: backtime, tee: teetime, hoghog: 0)
-                log.addPost(post: newPost)
-                self.isRunning.toggle()
-            } else {
-                // Start -> Stop
-                self.isRunning.toggle()
-                clock.initTime()
-            }
+            toggleTimer()
         }
-        .containerBackground(LinearGradient(gradient: Gradient(colors: [getClockColor(), .black]), startPoint: .top, endPoint: .bottom), for: .tabView)
-        .sensoryFeedback(.start, trigger: isRunning)
-    }
-
-    func timeString(time: Double) -> String {
-        let time = String(format: "%.2f", time/1000)
-        return time
-    }
-    
-    private func getClockLabel() -> String {
-        if self.isRunning {
-            return "Stop"
-        } else {
-            return "Start"
+        .containerBackground(LinearGradient(gradient: Gradient(colors: [clockColor, .black]), startPoint: .top, endPoint: .bottom), for: .tabView)
+        .sensoryFeedback(trigger: isRunning) { _, isNowRunning in
+            isNowRunning ? .start : .success
         }
-    }
-    
-    private func getClockTime() -> AttributedString {
-        if clock.presentation == .one {
-            getClockTime1()
-        } else {
-            getClockTime2()
+        .onAppear {
+            if isRunning { startTicker() }
+        }
+        .onDisappear {
+            stopTicker()
         }
     }
 
-    private func getClockTime1() -> AttributedString {
-        var ret: AttributedString = ""
-        
-        if self.isRunning {
-            ret = try! AttributedString(markdown:"\(timeString(time: Double(clock.currentTime)))")
+    // MARK: - Timer control
+
+    private func toggleTimer() {
+        if isRunning {
+            clock.stopTime()
+            stopTicker()
+            let clockedtime = clock.getTime()
+            let newPost = LogItem(id: log.postcounter, when: clock.now, bakkant: clockedtime.back, tee: clockedtime.tee, hoghog: clockedtime.hoghog)
+            log.addPost(post: newPost)
         } else {
-            if clock.t_end != 0 {
-                if clock.timingLine == .tee {
-                    ret = try! AttributedString(markdown:"**\(timeString(time: Double(clock.t_end)))**")
-                } else {
-                    ret = try! AttributedString(markdown:"**\(timeString(time: Double(clock.t_end)))**")
-                }
-            }
+            clock.initTime()
+            startTicker()
         }
-        return ret
+        isRunning.toggle()
     }
-    
-    private func getClockTime2() -> AttributedString {
-        var ret: AttributedString = ""
-        
-        if self.isRunning {
-            ret = try! AttributedString(markdown:"\(timeString(time: Double(clock.currentTime)))")
-        } else {
-            if clock.t_end != 0 {
-                if clock.timingLine == .tee {
-                    //try! AttributedString(markdown:
-                    ret = try! AttributedString(markdown: "**Tee: \(timeString(time: Double(clock.t_end)))** \nBack: \(timeString(time: clock.calcBackTime(tee: Double(clock.t_end))))")
-                } else {
-                    ret = try! AttributedString(markdown: "Tee: \(timeString(time: clock.calcTeeTime(back: Double(clock.t_end))))\n **Back: \(timeString(time: Double(clock.t_end)))**")
-                }
-            }
+
+    // The display only shows hundredths of a second, so 50 updates per second
+    // is plenty. The measurement itself is taken in Clock.stopTime() and does
+    // not depend on this timer.
+    private func startTicker() {
+        guard ticker == nil else { return }
+        let timer = Timer(timeInterval: 0.02, repeats: true) { _ in
+            clock.updateTime()
         }
-        return ret
+        RunLoop.main.add(timer, forMode: .common)
+        ticker = timer
     }
-    
-    private func getClockColor() -> Color {
-        if self.isRunning {
-            return Color(UIColor(named: "StopColor")!)
+
+    private func stopTicker() {
+        ticker?.invalidate()
+        ticker = nil
+    }
+
+    // MARK: - Display
+
+    private var clockLabel: String {
+        isRunning ? "Stop" : "Start"
+    }
+
+    private var clockTime: String {
+        if isRunning {
+            return TimeFormat.seconds(Double(clock.currentTime))
+        } else if clock.t_end != 0 {
+            return TimeFormat.seconds(Double(clock.t_end))
         } else {
-            return Color(UIColor(named: "StartColor")!)
+            return ""
         }
+    }
+
+    private var clockColor: Color {
+        isRunning ? Color.stop : Color.start
     }
     
     struct ClockView_Previews: PreviewProvider {
@@ -127,7 +107,7 @@ struct ClockView: View {
             samplelog.addPost(post: samplelogItems[0])
             samplelog.addPost(post: samplelogItems[1])
             let sampleclock: Clock = Clock()
-            return ClockView(log: .constant(samplelog),clock: .constant(sampleclock))
+            return ClockView(log: .constant(samplelog),clock: sampleclock)
         }
     }
 }

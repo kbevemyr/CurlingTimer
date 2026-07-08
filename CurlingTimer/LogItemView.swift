@@ -18,35 +18,20 @@ struct LogItemView: View {
 
     var body: some View {
         HStack {
-            Text(dateString(date: logitem.when))
+            Text(TimeFormat.timestamp(logitem.when))
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             if mode == .tee || mode == .back {
-                Text(timeString(time: logitem.tee))
+                Text(TimeFormat.loggedSeconds(logitem.tee))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text(timeString(time: logitem.bakkant))
+                Text(TimeFormat.loggedSeconds(logitem.bakkant))
                     .frame(maxWidth: .infinity, alignment: .leading)
             } else {
-                Text(timeString(time: logitem.hoghog))
+                Text(TimeFormat.loggedSeconds(logitem.hoghog))
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
         .font(.title3)
-    }
-
-    var dateFormat: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm:ss"
-        return formatter
-    }
-
-    func dateString(date: Date) -> String {
-        dateFormat.string(from: date)
-    }
-
-    func timeString(time: Double) -> String {
-        guard time >= 0.01 else { return "" }
-        return String(format: "%.2f", time / 1000)
     }
 }
 

@@ -13,33 +13,17 @@ struct LogItemView: View {
     
     var body: some View {
         HStack {
-            Text(dateString(date:logitem.when))
+            Text(TimeFormat.timestamp(logitem.when))
                 .font(.footnote).padding(.trailing, 10)
             Spacer()
             if ((mode == .tee) || (mode == .back)) {
-                Text(timeString(time: logitem.tee)).font(.title3)
+                Text(TimeFormat.loggedSeconds(logitem.tee)).font(.title3)
                 Spacer()
-                Text(timeString(time: logitem.bakkant)).font(.title3)
+                Text(TimeFormat.loggedSeconds(logitem.bakkant)).font(.title3)
             } else {
-                Text(timeString(time: logitem.hoghog)).font(.title3)
+                Text(TimeFormat.loggedSeconds(logitem.hoghog)).font(.title3)
             }
         }
-    }
-    
-    var dateFormat: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm:ss"
-        return formatter
-    }
-    
-    func dateString(date: Date) -> String {
-        let time = dateFormat.string(from: date)
-         return time
-    }
-    
-    func timeString(time: Double) -> String{
-        let time = String(format: "%.2f", time/1000)
-        return time
     }
 }
 
